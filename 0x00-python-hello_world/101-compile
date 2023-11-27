@@ -1,0 +1,6 @@
+#!/bin/bash
+py_compile "$PYFILE"
+echo "compiling $PYFILE ..."
+compiled_filename = "{$PYFILE%.py}.pyc"
+mv "__pycache__/$compiled_filename"
+rmdir "__pycache__"
