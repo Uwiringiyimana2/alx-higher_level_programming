@@ -3,15 +3,13 @@
 
 if __name__ == "__main__":
     """Prints the number of and the list of its arguments"""
-    import sys
+    from sys import argv
 
-    number = len(sys.argv) - 1
+    num_args = len(argv) - 1
+    singular_plural = "argument" if num_args == 1 else "arguments"
+    ending = "." if num_args == 0 else ":"
 
-    if number == 0:
-        print("0 arguments.")
-    elif number == 1:
-        print("1 argument:")
-    else:
-        print("{} arguments:".format(number))
-    for n in range(number):
-        print("{} : {}".format(n + 1, sys.argv[n + 1]))
+    print("{} {}{}".format(num_args, singular_plural, ending))
+
+    for i in range(num_args):
+        print("{} : {}".format(i + 1, argv[i + 1]))
