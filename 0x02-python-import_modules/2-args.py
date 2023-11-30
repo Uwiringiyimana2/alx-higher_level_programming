@@ -8,13 +8,12 @@ if __name__ == "__main__":
     number = len(sys.argv) - 1
     args = sys.argv
 
-    if number == 1:
+    if number == 0:
+        print("0 arguments.")
+    elif number == 1:
         print("{} argument:".format(number))
     else:
-        if number == 0:
-            print("0 arguments.")
-        else:
-            print("{} arguments:".format(number))
+        print("{} arguments:".format(number))
 
     if number > 0:
         for n in range(number):
