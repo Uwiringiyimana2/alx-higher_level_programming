@@ -17,5 +17,5 @@ if __name__ == "__main__":
             print("{} arguments:".format(number))
 
     if number > 0:
-        for n in range(1, number + 1):
-            print("{} : {}".format(n, args[n]))
+        for n in range(number):
+            print("{} : {}".format(n + 1, args[n + 1]))
