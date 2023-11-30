@@ -6,15 +6,14 @@ if __name__ == "__main__":
     import sys
 
     number = len(sys.argv) - 1
-    args = sys.argv
 
     if number == 0:
         print("0 arguments.")
     elif number == 1:
-        print("{} argument:".format(number))
+        print("1 argument:")
     else:
         print("{} arguments:".format(number))
 
     if number > 0:
         for n in range(number):
-            print("{} : {}".format(n + 1, args[n + 1]))
+            print("{} : {}".format(n + 1, sys.argv[n + 1]))
