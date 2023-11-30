@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-# imports calculator_1.py module
+# 1-calculation_1.py
 
 if __name__ == "__main__":
-    """Prints the result of operations on a and b"""
+    """Prints the sum, difference, product and division of a and b."""
     from calculator_1 import add, sub, mul, div
 
     a = 10
