@@ -13,9 +13,8 @@ def replace_in_list(my_list, idx, element):
         modified list
         orginal list if idx is negative or out of range
     """
-    for i in my_list:
-        if idx < 0 or idx > (len(my_list)):
-            return my_list
-        else:
-            my_list[idx] = element
-            return my_list
+    if idx < 0 or idx > (len(my_list)):
+        return my_list
+    else:
+        my_list[idx] = element
+        return my_list
