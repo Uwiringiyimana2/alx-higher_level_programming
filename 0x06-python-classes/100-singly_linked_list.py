@@ -1,92 +1,91 @@
-#!/usr/bin/python3
-""" """
-
-
 class Node:
-    """
-    defines node
-    """
+    """Class defining a node of a singly linked list."""
 
     def __init__(self, data, next_node=None):
-        """
-        initializes node
+        """Initialize a node with data and next_node.
 
-        Attributes:
-            data: data stored in node
-            next_node: address of next node in list
+        Args:
+            data: Data of the node (must be an integer).
+            next_node: Reference to the next node (must be a Node or None).
+
+        Raises:
+            TypeError: If data is not an integer or next_node is not a Node or None.
         """
         self.data = data
         self.next_node = next_node
 
     @property
     def data(self):
-        """
-        finds data
-        """
+        """Retrieve the data of the node."""
         return self.__data
 
     @data.setter
     def data(self, value):
+        """Set the data of the node with validation.
+
+        Args:
+            value: Data to set (must be an integer).
+
+        Raises:
+            TypeError: If value is not an integer.
         """
-        validates that data is an integer
-        """
-        if type(value) is not int:
+        if not isinstance(value, int):
             raise TypeError('data must be an integer')
         else:
             self.__data = value
 
     @property
     def next_node(self):
-        """
-        finds next_node
-        """
+        """Retrieve the next node."""
         return self.__next_node
 
     @next_node.setter
     def next_node(self, value):
+        """Set the next node with validation.
+
+        Args:
+            value: Next node (must be a Node or None).
+
+        Raises:
+            TypeError: If value is not a Node or None.
         """
-        validates next_node as either None or a node
-        """
-        if type(value) is not Node and value is not None:
+        if value is not None and not isinstance(value, Node):
             raise TypeError('next_node must be a Node object')
         else:
             self.__next_node = value
 
 
 class SinglyLinkedList:
-    """
-    defines singly linked list class
-    """
+    """Class defining a singly linked list."""
 
     def __init__(self):
-        """
-        initializes singly linked list
-        """
-        self.__head = None
+        """Initialize an empty singly linked list."""
+        self.head = None
 
     def __str__(self):
-        """
-        returns string version of list
-        """
-        string = ""
-        if self.__head is None:
-            return string
-        runner = self.__head
-        while runner is not None:
-            string += str(runner.data)
-            runner = runner.next_node
-            if runner is not None:
-                string += "\n"
-        return string
+        """Return a string representation of the linked list."""
+        result = ""
+        current = self.head
+        while current is not None:
+            result += str(current.data) + "\n"
+            current = current.next_node
+        return result
 
     def sorted_insert(self, value):
+        """Insert a new Node into the correct sorted position in the list (increasing order).
+
+        Args:
+            value: Data of the new node (must be an integer).
         """
-        inserts a new node into correct position in list
-        """
-        if self.__head is None or value < self.__head.data:
-            self.__head = Node(value, self.__head)
-            return
-        runner = self.__head
-        while runner.next_node is not None and runner.next_node.data < value:
-            runner = runner.next_node
-        runner.next_node = Node(value, runner.next_node)
+        new_node = Node(value)
+
+        if self.head is None or value < self.head.data:
+            new_node.next_node = self.head
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next_node is not None and value >= current.next_node.data:
+                current = current.next_node
+            new_node.next_node = current.next_node
+            current.next_node = new_node
+
