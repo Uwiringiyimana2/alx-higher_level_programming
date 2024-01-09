@@ -2,7 +2,7 @@
 """Student class"""
 
 
-class Student:
+class Student():
     """class Student that defines a student"""
 
     def __init__(self, first_name, last_name, age):
@@ -13,4 +13,4 @@ class Student:
 
     def to_json(self):
         """retrieves a dictionary representation of a Student"""
-        return self.__dect__
+        return self.__dict__
