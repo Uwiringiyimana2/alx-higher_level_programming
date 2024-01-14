@@ -81,7 +81,7 @@ class Rectangle(Base):
             raise TypeError("{} must be an integer".format(attr_name))
         if value < 0:
             raise ValueError("{} must be >= 0".format(attr_name))
-    
+
     def display(self):
         """prints in stdout the Rectangle"""
         for i in range(self.__height):
@@ -89,5 +89,5 @@ class Rectangle(Base):
 
     def __str__(self):
         """string representation of Rectangle"""
-        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
-
+        str = f"{self.__width}/{self.__height}"
+        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - " + str
