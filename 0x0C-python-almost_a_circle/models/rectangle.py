@@ -64,6 +64,10 @@ class Rectangle(Base):
         self.validate_xy(value, 'y')
         self.__y = value
 
+    def area(self):
+        """return area of rectangle"""
+        return self.__width * self.__height
+
     def validate_rect(self, value, attr_name):
         """validate width, height"""
         if not isinstance(value, int):
@@ -77,3 +81,13 @@ class Rectangle(Base):
             raise TypeError("{} must be an integer".format(attr_name))
         if value < 0:
             raise ValueError("{} must be >= 0".format(attr_name))
+    
+    def display(self):
+        """prints in stdout the Rectangle"""
+        for i in range(self.__height):
+            print('#' * self.__width)
+
+    def __str__(self):
+        """string representation of Rectangle"""
+        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
+
