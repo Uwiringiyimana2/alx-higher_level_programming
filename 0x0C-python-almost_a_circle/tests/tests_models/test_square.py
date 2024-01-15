@@ -5,6 +5,7 @@
 import unittest
 import pep8
 from models.square import Square
+from models.base import Base
 
 
 class TestSquare(unittest.TestCase):
