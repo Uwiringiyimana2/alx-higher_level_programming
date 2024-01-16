@@ -1,14 +1,5 @@
-============================
-doctest for 3-say_my_name.py
-============================
-``say_my_name()`` prints "My name is <first name> <last name>"
-
-TEST CONDITIONS
-===============
-
-testing printing two given strings
-::
 >>> say_my_name = __import__('3-say_my_name').say_my_name
+
 >>> say_my_name("Betty", "Holberton")
 My name is Betty Holberton
 
@@ -26,6 +17,7 @@ testing None argument for first_name
 ::
 >>> say_my_name(None, "Last")
 Traceback (most recent call last):
+...
 TypeError: first_name must be a string
 
 testing None argument for last_name
