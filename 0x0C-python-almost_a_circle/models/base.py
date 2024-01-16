@@ -48,7 +48,7 @@ class Base:
         """returns an instance with all attributes already set."""
         if cls.__name__ == "Rectangle":
             instance = cls(1, 1, 0, 0)
-        if cls.__name__ == "Square":
+        elif cls.__name__ == "Square":
             instance = cls(1, 0, 0)
         else:
             instance = cls()
@@ -62,9 +62,9 @@ class Base:
         results = []
         try:
             with open(filename, 'r') as f:
-                for instance in cls.from_json_string(f.read()):
-                    results.append(cls.create(**instance))
-        except Exception as err:
+                data = cls.from_json_string(f.read())
+                results = [cls.create(**i) for i in data]
+        except FileNotFoundError:
             pass
         return results
 
@@ -100,6 +100,4 @@ class Base:
     @classmethod
     def create_from_csv_row(cls, csv_row):
         """Creates an instance from a CSV row."""
-        raise NotImplementedError("create_from_csv_row method must be implemented")
-
-
+        raise NotImplementedError("create_from_csv_row must be implemented")
