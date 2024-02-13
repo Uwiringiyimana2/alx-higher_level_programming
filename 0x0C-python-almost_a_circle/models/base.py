@@ -19,30 +19,27 @@ class Base:
             self.id = Base.__nb_objects
 
     @staticmethod
-    def to_json_string(list_dictionaries):
+    def to_json_string(list_dictionaries=None):
         """returns the JSON string representation of list_dictionaries."""
         if list_dictionaries is None or len(list_dictionaries) == 0:
-            return []
+            return "[]"
         else:
             return json.dumps(list_dictionaries)
 
     @classmethod
-    def save_to_file(cls, list_objs):
+    def save_to_file(cls, list_objs=None):
         """write JSON string representation of list_objes to a file."""
         if list_objs is None:
             list_objs = []
         filename = cls.__name__ + ".json"
-        list_dictionaries = []
-        for instance in list_objs:
-            list_dictionaries.append(instance.to_dictionary())
         with open(filename, 'w') as f:
-            f.write(cls.to_json_string(list_dictionaries))
+            f.write(cls.to_json_string([o.to_dictionary() for o in list_objs]))
 
     @staticmethod
     def from_json_string(json_string):
         """returns the list of the JSON string representation json_string."""
         if json_string is None:
-            return []
+            return "[]"
         else:
             return json.loads(json_string)
 
@@ -51,7 +48,7 @@ class Base:
         """returns an instance with all attributes already set."""
         if cls.__name__ == "Rectangle":
             instance = cls(1, 1, 0, 0)
-        if cls.__name__ == "Square":
+        elif cls.__name__ == "Square":
             instance = cls(1, 0, 0)
         else:
             instance = cls()
@@ -65,9 +62,9 @@ class Base:
         results = []
         try:
             with open(filename, 'r') as f:
-                for instance in cls.from_json_string(f.read()):
-                    results.append(cls.create(**instance))
-        except Exception as err:
+                data = cls.from_json_string(f.read())
+                results = [cls.create(**i) for i in data]
+        except FileNotFoundError:
             pass
         return results
 
@@ -103,6 +100,4 @@ class Base:
     @classmethod
     def create_from_csv_row(cls, csv_row):
         """Creates an instance from a CSV row."""
-        raise NotImplementedError("create_from_csv_row method must be implemented")
-
-
+        raise NotImplementedError("create_from_csv_row must be implemented")
