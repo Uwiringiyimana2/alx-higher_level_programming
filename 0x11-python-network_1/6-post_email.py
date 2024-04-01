@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" sends a POST request"""
 import requests
 import sys
 
