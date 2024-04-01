@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""exceptions"""
 import requests
 import sys
 from requests.exceptions import HTTPError
