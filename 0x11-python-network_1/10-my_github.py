@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Github API"""
 import requests
 import sys
 from requests.auth import HTTPBasicAuth
